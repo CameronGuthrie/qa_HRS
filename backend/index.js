@@ -8,7 +8,7 @@ const app = express();
 const db = new sqlite3.Database(':memory:');
 const JWT_SECRET = 'your_jwt_secret';
 
-const allowedOrigins = ['https://qahrs.netlify.app/'];
+const allowedOrigins = ['https://qa-hrs.onrender.com', 'http://localhost:3000'];
 
 const corsOptions = {
   origin: (origin, callback) => {
