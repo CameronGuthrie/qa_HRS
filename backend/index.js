@@ -1,5 +1,4 @@
 const express = require('express');
-const serverless = require('serverless-http');
 const sqlite3 = require('sqlite3').verbose();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -9,8 +8,7 @@ const app = express();
 const db = new sqlite3.Database(':memory:');
 const JWT_SECRET = 'your_jwt_secret';
 
-// Replace with your actual domain
-const allowedOrigins =  ['https://qa-hrs.onrender.com']; 
+const allowedOrigins = ['https://qahrs.netlify.app/'];
 
 const corsOptions = {
   origin: (origin, callback) => {
@@ -24,7 +22,8 @@ const corsOptions = {
 };
 
 app.use(express.json());
-app.use(cors(corsOptions)); // Apply the CORS configuration
+app.use(express.urlencoded({ extended: true }));
+app.use(cors(corsOptions));
 
 // Initialize the SQLite database in memory and create the users table
 db.serialize(() => {
@@ -58,4 +57,8 @@ app.post('/login', (req, res) => {
   });
 });
 
-module.exports.handler = serverless(app);
+// Bind the server to the correct port
+const PORT = process.env.PORT || 3000; // Default to 3000 if no PORT environment variable is set
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
