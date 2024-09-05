@@ -142,7 +142,6 @@ button:disabled {
   width: 100%;
   background-color: #fff; /* Adjust to desired background color */
   padding: 0 20px; /* Some padding on the sides */
-  box-sizing: border-box;
 }
 
 .navbar-logo {
@@ -151,7 +150,6 @@ button:disabled {
 }
 
 .navbar-links {
-  height:100px;
   display: flex;
   list-style: none;
   margin: 0;
@@ -192,12 +190,25 @@ button:disabled {
   background-color: #d05228; /* Darker shade on hover */
 }
 
-/* Banner Styles */
+.menu-icon {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.menu-icon .bar {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 4px 0;
+  transition: 0.3s;
+}
+
+/* Remove padding for banner */
 .banner {
+  padding: 0;
+  margin: 0;
   width: 100%;
-  padding: 0rem -4rem;
-  max-height: 400px; /* Set a max-height for the banner */
-  overflow: hidden;
 }
 
 .banner-image {
@@ -208,6 +219,29 @@ button:disabled {
 }
 
 @media (max-width: 768px) {
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100px;
+    right: 0;
+    background-color: #333;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .navbar-links.active {
+    display: flex;
+  }
+
+  .menu-icon {
+    display: flex;
+  }
+
+  .navbar-links li {
+    margin: 10px 0;
+  }
+
   .banner {
     max-height: 200px; /* Adjust banner height for smaller screens */
   }
