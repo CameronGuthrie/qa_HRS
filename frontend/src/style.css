@@ -164,11 +164,13 @@ button:disabled {
 }
 
 .navbar-links a {
-  height:100px;
   color: rgb(202, 162, 51); /* Text color for links */
   text-decoration: none;
   font-size: 16px;
   transition: color 0.3s;
+  height: 95px;
+  display: block;
+  border-bottom: 5px solid transparent; /* Add a transparent bottom border */
 }
 
 .navbar-links a:hover {
