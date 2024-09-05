@@ -54,20 +54,20 @@ function Login({ onLogin }) {
         <h2>{isRegistering ? 'Create Account' : 'Welcome Back!'}</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <FontAwesomeIcon icon={faEnvelope} className="icon" />
+            <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              placeholder="Email..."
+              placeholder="Email"
               className="form-control"
             />
           </div>
           <div className="form-group">
-            <FontAwesomeIcon icon={faKey} className="icon" />
+            <FontAwesomeIcon icon={faKey} className="input-icon" />
             <input
-              type={showPassword ? "text" : "password"}  // Toggle between text and password
+              type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -75,9 +75,9 @@ function Login({ onLogin }) {
               className="form-control"
             />
             <FontAwesomeIcon
-              icon={showPassword ? faEye : faEyeSlash}  // Swap icons logic
+              icon={showPassword ? faEye : faEyeSlash}
               className="toggle-password-icon"
-              onClick={() => setShowPassword(!showPassword)}  // Toggle showPassword state
+              onClick={() => setShowPassword(!showPassword)}
             />
           </div>
           {error && <div className="error-message">{error}</div>}

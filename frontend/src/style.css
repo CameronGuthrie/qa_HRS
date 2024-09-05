@@ -49,14 +49,16 @@ body {
 }
 
 /* Button Styles */
-button {
+button, .form-control {
   background-color: rgb(241, 99, 49);
   color: rgb(255, 255, 255);
   font-weight: 400;
   border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
+  padding: 0.75rem 1.5rem; /* Adjusted padding */
+  border-radius: 4px; /* Same roundness for inputs and button */
   cursor: pointer;
+  width: 100%; /* Full width */
+  box-sizing: border-box; /* Make sure padding is included in width */
   transition: background-color 0.3s ease;
 }
 
@@ -71,12 +73,11 @@ button:disabled {
 
 .form-group {
   position: relative;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .form-control {
-  width: 100%;
-  padding: 0.5rem 1rem 0.5rem 2.5rem;  /* Space for the icon on the left */
+  padding: 0.75rem 2.75rem; /* Adjusted padding to match button */
   font-family: "Calibri", sans-serif;
 }
 
@@ -86,7 +87,7 @@ button:disabled {
   top: 50%;
   transform: translateY(-50%);
   color: #888;
-  pointer-events: none;  /* Ensures the icon doesn't block clicks */
+  pointer-events: none;
 }
 
 .toggle-password-icon {
@@ -96,16 +97,6 @@ button:disabled {
   transform: translateY(-50%);
   cursor: pointer;
   color: #888;
-}
-
-.btn-submit {
-  background-color: rgb(241, 99, 49);
-  color: rgb(255, 255, 255);
-  font-weight: 400;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  cursor: pointer;
-  width: 100%;
 }
 
 .error-message {
