@@ -2,10 +2,8 @@
     "name": "fullstack-app",
     "version": "1.0.0",
     "scripts": {
-      "start": "npm run start-backend",
-      "start-backend": "node backend/index.js",
-      "build": "npm run build-frontend",
-      "build-frontend": "npm --prefix frontend run build"
+      "start": "node backend/index.js",
+      "build": "npm install --prefix frontend && npm --prefix frontend run build && npm install --prefix backend"
     },
     "dependencies": {
       "concurrently": "^6.0.0"
