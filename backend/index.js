@@ -3,10 +3,11 @@ const sqlite3 = require('sqlite3').verbose();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 const db = new sqlite3.Database(':memory:');
-const JWT_SECRET = 'your_jwt_secret';
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const allowedOrigins = ['https://qa-hrs.onrender.com', 'http://localhost:3000'];
 
@@ -24,6 +25,9 @@ const corsOptions = {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
+
+// Serve front-end static files
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
 // Initialize the SQLite database in memory and create the users table
 db.serialize(() => {
@@ -57,8 +61,12 @@ app.post('/login', (req, res) => {
   });
 });
 
-// Bind the server to the correct port
-const PORT = process.env.PORT || 3000; // Default to 3000 if no PORT environment variable is set
+// Catch-all route to serve the front-end
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+});
+
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
