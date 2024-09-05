@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faKey, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import logo from './assets/logo.webp'; 
 
 function Login({ onLogin }) {
   const [email, setEmail] = useState('');
