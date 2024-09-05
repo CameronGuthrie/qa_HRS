@@ -25,6 +25,13 @@ body {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+.logo-img {
+  display: block;
+  margin: 0 auto;
+  max-width: 150px; /* Adjust size as needed */
+  height: auto;
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -48,17 +55,20 @@ body {
   color: #888;
 }
 
+button, .form-control {
+  width: 100%; /* Full width */
+  box-sizing: border-box; /* Make sure padding is included in width */
+  padding: 0.75rem 1.5rem; /* Adjusted padding */
+  border-radius: 4px; /* Same roundness for inputs and button */
+  font-weight: 400;
+}
+
 /* Button Styles */
 button, .form-control {
   background-color: rgb(241, 99, 49);
   color: rgb(255, 255, 255);
-  font-weight: 400;
   border: none;
-  padding: 0.75rem 1.5rem; /* Adjusted padding */
-  border-radius: 4px; /* Same roundness for inputs and button */
   cursor: pointer;
-  width: 100%; /* Full width */
-  box-sizing: border-box; /* Make sure padding is included in width */
   transition: background-color 0.3s ease;
 }
 

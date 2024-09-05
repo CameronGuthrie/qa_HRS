@@ -51,7 +51,11 @@ function Login({ onLogin }) {
   return (
     <div className="login-wrapper">
       <div className="login-container">
-        <h2>{isRegistering ? 'Create Account' : 'Welcome Back!'}</h2>
+        <img src={logo} alt="Hotel Logo" className="logo-img" />
+        <h1>{isRegistering ? 'Create Account' : 'Learner Login'}</h1>
+        <h3>Welcome to the QA Hotel, Restaurant & Spa</h3>
+        <p>{isRegistering ? ' Thank you for your interest in our exclusive hotel, reserved for our esteemed learners and their dedicated trainers.' : 'Thank you for registering at our exclusive hotel which is only available to our valued learners and their trainers.'}</p>
+        <p>{isRegistering ? 'Once your registration is complete, you\’ll be able to explore our website to discover more about our premium amenities, including our state-of-the-art health & fitness center and our renowned partners at Mancuzo Spa. Don\’t forget to keep an eye out for exclusive offers to enhance your stay.' : 'Upon loging in, feel free to browse the website to find out more about our facilities, such as our health & fitness, plus our valued partners at Mancuzo Spa. In addition, look out for our special offers for your stay.'}</p>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
