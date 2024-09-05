@@ -1,6 +1,6 @@
-// src/App.jsx
 import React, { useState, useEffect } from 'react';
 import Login from './Login';
+import logo from './assets/logo.webp'; // Import your logo
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -29,18 +29,38 @@ function App() {
   return (
     <div className="App">
       {isLoggedIn ? (
-        <div>
-          <h1>Welcome to the QA Hotel, Restaurant & Spa</h1>
-          <p>
-            As soon as you approach our private hotel, you’ll immediately see the history
-            steeped in the design of this beautiful building...
-          </p>
-          <button onClick={handleLogout}>Log Out</button>
-        </div>
+        <>
+          <Navbar handleLogout={handleLogout} />
+          <div className="content">
+            <h1>Welcome to the QA Hotel, Restaurant & Spa</h1>
+            <p>
+              As soon as you approach our private hotel, you’ll immediately see the history
+              steeped in the design of this beautiful building...
+            </p>
+          </div>
+        </>
       ) : (
         <Login onLogin={handleLogin} />
       )}
     </div>
+  );
+}
+
+// Create the Navbar component
+function Navbar({ handleLogout }) {
+  return (
+    <nav className="navbar">
+      <img src={logo} alt="Hotel Logo" className="navbar-logo" />
+      <ul className="navbar-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/rooms">Your Room</a></li>
+        <li><a href="/restaurant">Restaurant & Bar</a></li>
+        <li><a href="/health-fitness">Health & Fitness</a></li>
+        <li><a href="/study">Study Room</a></li>
+        <li><a href="/about">About</a></li>
+        <li><button onClick={handleLogout} className="logout-button">Logout</button></li>
+      </ul>
+    </nav>
   );
 }
 

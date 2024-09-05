@@ -128,3 +128,56 @@ button:disabled {
   color: rgb(241, 99, 49);
   cursor: pointer;
 }
+
+/* Navbar styles */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  width: 100%;
+  background-color: #333; /* Adjust to desired background color */
+  padding: 0 20px; /* Some padding on the sides */
+  box-sizing: border-box;
+}
+
+.navbar-logo {
+  height: 80px; /* Adjust the height of the logo */
+  margin-left: 20px; /* Adjust spacing if needed */
+}
+
+.navbar-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  margin-right: 20px;
+}
+
+.navbar-links a {
+  color: #fff; /* Text color for links */
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.navbar-links a:hover {
+  color: #f16331; /* Hover color for links */
+}
+
+.logout-button {
+  background-color: #f16331; /* Background color for the logout button */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #d05228; /* Darker shade on hover */
+}
