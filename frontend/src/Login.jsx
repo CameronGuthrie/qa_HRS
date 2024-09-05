@@ -29,7 +29,7 @@ function Login({ onLogin }) {
     try {
       const endpoint = isRegistering ? '/register' : '/login';
       //const endpoint = isRegistering ? '/api/register' : '/api/login';
-      const response = await fetch(`https://qa-hrs-backend.onrender.com${endpoint}`, {
+      const response = await fetch(`https://qa-hrs.onrender.com${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
