@@ -10,7 +10,7 @@ body {
   text-align: left;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1, h2 {
   text-align: center;
 }
 
@@ -60,6 +60,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 button, .form-control {
+  font-size: 3em;
   width: 100%; /* Full width */
   box-sizing: border-box; /* Make sure padding is included in width */
   padding: 0.75rem 1.5rem; /* Adjusted padding */
@@ -93,7 +94,6 @@ button:disabled {
 .form-control {
   border-style:solid;
   padding: 0.75rem 2.75rem; /* Adjusted padding to match button */
-  font-family: "Calibri", sans-serif;
 }
 
 .input-icon {
