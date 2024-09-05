@@ -1,6 +1,5 @@
 // src/Login.jsx
 import React, { useState } from 'react';
-import './Login.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faKey, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
@@ -61,6 +60,7 @@ function Login({ onLogin }) {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              placeholder="Email..."
               className="form-control"
             />
           </div>
@@ -71,6 +71,7 @@ function Login({ onLogin }) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              placeholder="********"
               className="form-control"
             />
             <FontAwesomeIcon
