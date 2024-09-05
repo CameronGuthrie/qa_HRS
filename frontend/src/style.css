@@ -6,7 +6,7 @@ body {
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem 4rem;
+  padding: 0rem 4rem;
   text-align: left;
 }
 
@@ -49,6 +49,10 @@ h1, h2 {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
+}
+
+.login-wrapper {
+  padding-top: 2rem;
 }
 
 .card {
@@ -136,7 +140,7 @@ button:disabled {
   justify-content: space-between;
   height: 100px;
   width: 100%;
-  background-color: #333; /* Adjust to desired background color */
+  background-color: #fff; /* Adjust to desired background color */
   padding: 0 20px; /* Some padding on the sides */
   box-sizing: border-box;
 }
@@ -154,11 +158,12 @@ button:disabled {
 }
 
 .navbar-links li {
+  height:100%;
   margin-right: 20px;
 }
 
 .navbar-links a {
-  color: #fff; /* Text color for links */
+  color: rgb(202, 162, 51); /* Text color for links */
   text-decoration: none;
   font-size: 16px;
   transition: color 0.3s;
@@ -166,6 +171,7 @@ button:disabled {
 
 .navbar-links a:hover {
   color: #f16331; /* Hover color for links */
+  border-bottom: 5px solid #f16331; /* Add a bottom border on hover */
 }
 
 .logout-button {
