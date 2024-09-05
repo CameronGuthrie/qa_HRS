@@ -32,7 +32,7 @@ h1, h2 {
 .logo-img {
   display: block;
   margin: 0 auto;
-  max-width: 300px; /* Adjust size as needed */
+  max-width: 350px; /* Adjust size as needed */
   height: auto;
 }
 
@@ -60,7 +60,7 @@ h1, h2 {
 }
 
 button, .form-control {
-  font-size: 3em;
+  font-size: 1.5em;
   width: 100%; /* Full width */
   box-sizing: border-box; /* Make sure padding is included in width */
   padding: 0.75rem 1.5rem; /* Adjusted padding */
