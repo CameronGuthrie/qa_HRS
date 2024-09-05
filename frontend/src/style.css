@@ -195,6 +195,7 @@ button:disabled {
 /* Banner Styles */
 .banner {
   width: 100%;
+  padding: 0rem -4rem;
   max-height: 400px; /* Set a max-height for the banner */
   overflow: hidden;
 }
