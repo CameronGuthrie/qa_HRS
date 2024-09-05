@@ -48,12 +48,19 @@ function App() {
   );
 }
 
-// Navbar component
+// Navbar component with hamburger menu
 function Navbar({ handleLogout }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <nav className="navbar">
       <img src={logo} alt="Hotel Logo" className="navbar-logo" />
-      <ul className="navbar-links">
+      <div className={`menu-icon ${isMenuOpen ? 'open' : ''}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <div className="bar"></div>
+        <div className="bar"></div>
+        <div className="bar"></div>
+      </div>
+      <ul className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
         <li><a href="/">Home</a></li>
         <li><a href="/rooms">Your Room</a></li>
         <li><a href="/restaurant">Restaurant & Bar</a></li>
