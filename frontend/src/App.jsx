@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Login from './Login';
 import logo from './assets/logo.webp'; // Import your logo
+import bannerImage from './assets/home-banner.webp'; // Import your banner for the home page
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -31,6 +32,7 @@ function App() {
       {isLoggedIn ? (
         <>
           <Navbar handleLogout={handleLogout} />
+          <Banner image={bannerImage} /> {/* Add banner here */}
           <div className="content">
             <h1>Welcome to the QA Hotel, Restaurant & Spa</h1>
             <p>
@@ -46,7 +48,7 @@ function App() {
   );
 }
 
-// Create the Navbar component
+// Navbar component
 function Navbar({ handleLogout }) {
   return (
     <nav className="navbar">
@@ -61,6 +63,15 @@ function Navbar({ handleLogout }) {
         <li><button onClick={handleLogout} className="logout-button">Logout</button></li>
       </ul>
     </nav>
+  );
+}
+
+// Banner component
+function Banner({ image }) {
+  return (
+    <div className="banner">
+      <img src={image} alt="Banner" className="banner-image" />
+    </div>
   );
 }
 

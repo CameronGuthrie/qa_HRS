@@ -191,3 +191,23 @@ button:disabled {
 .logout-button:hover {
   background-color: #d05228; /* Darker shade on hover */
 }
+
+/* Banner Styles */
+.banner {
+  width: 100%;
+  max-height: 400px; /* Set a max-height for the banner */
+  overflow: hidden;
+}
+
+.banner-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover; /* Ensures the image covers the banner area */
+}
+
+@media (max-width: 768px) {
+  .banner {
+    max-height: 200px; /* Adjust banner height for smaller screens */
+  }
+}
