@@ -36,10 +36,21 @@ function App() {
           <div className="content">
             <h1>Welcome to the QA Hotel, Restaurant & Spa</h1>
             <p>
-              As soon as you approach our private hotel, you’ll immediately see the history
-              steeped in the design of this beautiful building...
+              As soon as you approach our private hotel, you’ll immediately see the history steeped in the design of this beautiful building. And as you enter the hotel lobby you’ll feel relaxed after your journey as you’re greeted by the friendly faces and smiles of our staff who can’t wait to assist you and get you checked in. From our amazing receptionists to our concierge, you are guaranteed a warm welcome.
             </p>
           </div>
+          <p>
+            As well as the hotel lobby, on the ground floor you will find our restaurant plus the 'Queen Anne' bar from which the company name was created (more on that in the about page). We've also separated the bar area from the restaurant so you can sit and enjoy a quiet drink away from the bustle and noise of our restaurant.
+          </p>
+          <p>
+            On the top floor, with views over London, is the study room. This is a quiet area away from your room in which to study or just read your favourite novel. Either way, it’s yours to use.
+          </p>
+          <p>
+            The hotel also offers a Gym, Swimming Pool and Jacuzzi as well as access to our valued partners at the Mancuzo Spa.
+          </p>
+          <p>
+            <b>We look forward to welcoming you and hope you enjoy your stay.</b>
+          </p>
         </>
       ) : (
         <Login onLogin={handleLogin} />
@@ -55,11 +66,15 @@ function Navbar({ handleLogout }) {
   return (
     <nav className="navbar">
       <img src={logo} alt="Hotel Logo" className="navbar-logo" />
+      
+      {/* Hamburger menu icon */}
       <div className={`menu-icon ${isMenuOpen ? 'open' : ''}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
         <div className="bar"></div>
         <div className="bar"></div>
         <div className="bar"></div>
       </div>
+
+      {/* Navbar links */}
       <ul className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
         <li><a href="/">Home</a></li>
         <li><a href="/rooms">Your Room</a></li>

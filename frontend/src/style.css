@@ -1,19 +1,24 @@
-/* Global font style */
-body {
+/* Global Styles */
+html, body {
   font-family: "Calibri", sans-serif;
+  min-width: 530px; /* Prevents shrinking below 530px */
+  overflow-x: hidden; /* Prevents horizontal scrollbars */
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
+/* Root Container */
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0rem 4rem;
-  text-align: left;
+  min-width: 530px; /* Matches the global min-width */
 }
 
+/* Headings */
 h1, h2 {
   text-align: center;
 }
 
+/* Logo Styles */
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -32,10 +37,11 @@ h1, h2 {
 .logo-img {
   display: block;
   margin: 0 auto;
-  max-width: 450px; /* Adjust size as needed */
+  max-width: 450px; /* Adjust as needed */
   height: auto;
 }
 
+/* Logo Spin Animation */
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -51,78 +57,85 @@ h1, h2 {
   }
 }
 
+/* Login Wrapper */
 .login-wrapper {
-  padding-top: 2rem;
+  padding: 2rem 4rem;
 }
 
+/* Card Component */
 .card {
   padding: 2em;
 }
 
+/* Documentation Link */
 .read-the-docs {
   color: #888;
 }
 
+/* Form Elements */
 button, .form-control {
   font-size: 1.1em;
-  width: 100%; /* Full width */
-  box-sizing: border-box; /* Make sure padding is included in width */
-  padding: 0.75rem 1.5rem; /* Adjusted padding */
-  border-radius: 4px; /* Same roundness for inputs and button */
+  width: 100%;
+  box-sizing: border-box; /* Includes padding in width */
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px; /* Uniform border-radius */
   font-weight: 400;
 }
 
 /* Button Styles */
 button {
   background-color: rgb(241, 99, 49);
-  color: rgb(255, 255, 255);
+  color: #fff;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: rgb(220, 89, 44); /* Darker shade on hover */
+  background-color: rgb(220, 89, 44);
 }
 
 button:disabled {
-  background-color: rgb(200, 200, 200); /* Disabled state */
+  background-color: rgb(200, 200, 200);
   cursor: not-allowed;
 }
 
+/* Form Group */
 .form-group {
   position: relative;
   margin-bottom: 1.5rem;
 }
 
+/* Form Control */
 .form-control {
-  border-style:solid;
-  padding: 0.75rem 2.75rem; /* Adjusted padding to match button */
+  border: solid 1px #ccc;
+  padding: 0.75rem 2.75rem;
+}
+
+/* Input Icons */
+.input-icon, .toggle-password-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
 }
 
 .input-icon {
-  position: absolute;
   left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #888;
-  pointer-events: none;
 }
 
 .toggle-password-icon {
-  position: absolute;
   right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
   cursor: pointer;
-  color: #888;
 }
 
+/* Error Message */
 .error-message {
   color: red;
   margin-bottom: 1rem;
 }
 
+/* Toggle Text & Link */
 .toggle-text {
   text-align: center;
   margin-top: 1rem;
@@ -133,22 +146,56 @@ button:disabled {
   cursor: pointer;
 }
 
-/* Navbar styles */
+/* Banner Styles */
+.banner {
+  padding: 0;
+  margin-top: -5px;
+  width: 100%;
+  max-height:300px;
+  position: relative;
+  overflow: hidden; /* Prevents content overflow */
+  top: 70px; /* Offset the banner under the fixed navbar */
+}
+
+.banner-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Content Section */
+.content {
+  text-align: center;
+  background-color: rgb(37, 53, 74);
+  color: #fff;
+  padding: 2rem 4rem;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Navbar */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100px;
+  height: 70px;
   width: 100%;
-  background-color: #fff; /* Adjust to desired background color */
-  padding: 0 20px; /* Some padding on the sides */
+  background-color: #fff;
+  /*padding: 0 20px;*/
+  padding: 0 4rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 .navbar-logo {
-  height: 80px; /* Adjust the height of the logo */
-  margin-left: 20px; /* Adjust spacing if needed */
+  height: 50px;
 }
 
+/* Navbar Links */
 .navbar-links {
   display: flex;
   list-style: none;
@@ -157,27 +204,29 @@ button:disabled {
 }
 
 .navbar-links li {
-  height:100px;
+  height: 70px;
   margin-right: 20px;
 }
 
 .navbar-links a {
-  color: rgb(202, 162, 51); /* Text color for links */
+  display: inline-block;
+  color: rgb(202, 162, 51);
   text-decoration: none;
   font-size: 16px;
+  line-height: 70px;
+  height: 65px;
+  border-bottom: 5px solid transparent;
   transition: color 0.3s;
-  height: 95px;
-  display: block;
-  border-bottom: 5px solid transparent; /* Add a transparent bottom border */
 }
 
 .navbar-links a:hover {
-  color: #f16331; /* Hover color for links */
-  border-bottom: 5px solid #f16331; /* Add a bottom border on hover */
+  color: #f16331;
+  border-bottom: 5px solid #f16331;
 }
 
+/* Logout button */
 .logout-button {
-  background-color: #f16331; /* Background color for the logout button */
+  background-color: #f16331;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -187,62 +236,63 @@ button:disabled {
 }
 
 .logout-button:hover {
-  background-color: #d05228; /* Darker shade on hover */
+  background-color: #d05228;
 }
 
+/* Menu Icon */
 .menu-icon {
   display: none;
   flex-direction: column;
   cursor: pointer;
+  margin-left: 20px; /* Moved towards the left */
+  margin-right: 4rem; /* Padding 4rem from the right */
 }
 
 .menu-icon .bar {
   width: 25px;
   height: 3px;
-  background-color: white;
+  background-color: black;
   margin: 4px 0;
   transition: 0.3s;
 }
 
-/* Remove padding for banner */
-.banner {
-  padding: 0;
-  margin: 0;
-  width: 100%;
+/* Open hamburger icon animation */
+.menu-icon.open .bar:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 5px);
 }
 
-.banner-image {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover; /* Ensures the image covers the banner area */
+.menu-icon.open .bar:nth-child(2) {
+  opacity: 0;
 }
 
+.menu-icon.open .bar:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -5px);
+}
+
+/* Hide navbar links on small screens */
 @media (max-width: 768px) {
   .navbar-links {
     display: none;
     flex-direction: column;
     position: absolute;
-    top: 100px;
+    top: 70px;
     right: 0;
-    background-color: #333;
+    background-color: #fff;
     width: 100%;
     padding: 10px 0;
+    align-items: center; /* Center links when menu is open */
   }
 
   .navbar-links.active {
     display: flex;
   }
 
-  .menu-icon {
-    display: flex;
-  }
-
   .navbar-links li {
     margin: 10px 0;
+    text-align: center; /* Center text inside each link */
   }
 
-  .banner {
-    max-height: 200px; /* Adjust banner height for smaller screens */
+  .menu-icon {
+    display: flex;
   }
 }
