@@ -6,6 +6,7 @@ html, body {
   width: 100%;
   margin: 0;
   padding: 0;
+  font-size: large;
 }
 
 /* Root Container */
@@ -15,6 +16,26 @@ html, body {
 
 /* Headings */
 h1, h2 {
+  text-align: center;
+}
+
+h2 {
+  color:rgb(71, 94, 126);
+  font-size: 2em;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.title {
+  color: rgb(255, 255, 255);
+  display: inline;
+  font-family: "Roboto", sans-serif;
+  font-size: 2.5rem;
+  font-weight: lighter;
+  height: auto;
+  line-height: 1.4em;
   text-align: center;
 }
 
@@ -149,30 +170,45 @@ button:disabled {
 /* Banner Styles */
 .banner {
   padding: 0;
-  margin-top: -5px;
+  margin-top: -2px;
+  margin-bottom: -2px;
   width: 100%;
-  max-height:300px;
+  max-height:250px;
   position: relative;
   overflow: hidden; /* Prevents content overflow */
-  top: 70px; /* Offset the banner under the fixed navbar */
+  /* top: 70px; /* Offset the banner under the fixed navbar */
 }
 
 .banner-image {
   width: 100%;
   height: auto;
+  min-height:190px;
   display: block;
   object-fit: cover;
 }
 
 /* Content Section */
 .content {
-  text-align: center;
-  background-color: rgb(37, 53, 74);
-  color: #fff;
-  padding: 2rem 4rem;
+  text-align: left;
+  padding: 2rem 10vw;/*4rem;*/
   position: relative;
   width: 100%;
   box-sizing: border-box;
+}
+
+.content-dark {
+  text-align: center;
+  background-color: rgb(37, 53, 74);
+  color: #fff;
+}
+
+.footer-divider {
+  margin-top:2rem;
+  height: 5px;
+  width:100%;
+  position: relative;
+  display: block;
+  background-color: rgb(202, 162, 51);
 }
 
 /* Navbar */
@@ -185,7 +221,7 @@ button:disabled {
   background-color: #fff;
   /*padding: 0 20px;*/
   padding: 0 4rem;
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   z-index: 1000;
@@ -193,6 +229,7 @@ button:disabled {
 
 .navbar-logo {
   height: 50px;
+  width: 250px;
 }
 
 /* Navbar Links  */
@@ -294,5 +331,46 @@ button:disabled {
 
   .menu-icon {
     display: flex;
+  }
+}
+
+
+/* Flexbox container for images */
+.image-flexbox {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;  /* Ensures items wrap when there's not enough space */
+  margin-top: 2rem;
+}
+
+/* Individual image items */
+.image-item {
+  flex: 1; /* Ensures all items grow/shrink equally */
+  min-width: 250px; /* Ensures a minimum size */
+  text-align: center; /* Centers the headings and images */
+}
+
+/* Headings inside each image item */
+.image-item h2 {
+  margin-bottom: 1rem;
+}
+
+/* Images inside each image item */
+.image-item img {
+  max-width: 100%;
+  height: auto;
+  /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Optional shadow for effect */
+}
+
+/* Responsive behavior - one column on mobile devices */
+@media (max-width: 768px) {
+  .image-flexbox {
+    flex-direction: column; /* Stacks items vertically */
+    gap: 1rem; /* Adjusts the gap between items */
+  }
+
+  .image-item {
+    width: 100%; /* Makes each item take full width */
   }
 }
