@@ -77,6 +77,14 @@ function App() {
           <div class="footer-divider"></div>
           <div className="content content-dark">
             <img src={logoFooter} alt="Hotel Logo" className="footer-logo" />
+            <div className="image-flexbox">
+              <div className="image-item">
+                <b>Privacy</b>
+              </div>
+              <div className="image-item">
+                <b>Terms and Conditions</b>
+              </div>
+            </div>
             <p>
               Our registered office and postal address is International House, 1 St Katharine’s Way, London, E1W 1UN
             </p>

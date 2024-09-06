@@ -1,7 +1,7 @@
 /* Global Styles */
 html, body {
   font-family: "Calibri", sans-serif;
-  min-width: 530px; /* Prevents shrinking below 530px */
+  /*min-width: 530px; /* Prevents shrinking below 530px */
   overflow-x: hidden; /* Prevents horizontal scrollbars */
   width: 100%;
   margin: 0;
@@ -11,7 +11,7 @@ html, body {
 
 /* Root Container */
 #root {
-  min-width: 530px; /* Matches the global min-width */
+  /*min-width: 530px; /* Matches the global min-width */
 }
 
 /* Headings */
@@ -220,10 +220,7 @@ button:disabled {
   width: 100%;
   background-color: #fff;
   /*padding: 0 20px;*/
-  padding: 0 4rem;
   position: relative;
-  top: 0;
-  left: 0;
   z-index: 1000;
 }
 
@@ -245,7 +242,8 @@ button:disabled {
   margin-right: 20px;
 }
 
-.navbar-links a {
+.navbar-links a, logout-button {
+  background-color: none;
   display: inline-block;
   color: rgb(202, 162, 51);
   text-decoration: none;
@@ -261,28 +259,20 @@ button:disabled {
   border-bottom: 5px solid #f16331;
 }
 
-/* Logout button */
 .logout-button {
-  background-color: #f16331;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  color: green;
 }
 
 .logout-button:hover {
-  background-color: #d05228;
+  border-bottom: 5px solid green;
 }
-
+/* OLD MENU ICON
 /* Menu Icon */
 .menu-icon {
   display: none;
   flex-direction: column;
   cursor: pointer;
-  margin-left: 20px; /* Moved towards the left */
-  margin-right: 4rem; /* Padding 4rem from the right */
+  margin-right: 2rem; /* Padding 4rem from the right */
 }
 
 .menu-icon .bar {
@@ -295,7 +285,7 @@ button:disabled {
 
 /* Open hamburger icon animation */
 .menu-icon.open .bar:nth-child(1) {
-  transform: rotate(-45deg) translate(-5px, 5px);
+  transform: translate(-2px, 12px) rotate(-405deg)  scale(1, 1);
 }
 
 .menu-icon.open .bar:nth-child(2) {
@@ -303,7 +293,7 @@ button:disabled {
 }
 
 .menu-icon.open .bar:nth-child(3) {
-  transform: rotate(45deg) translate(-5px, -5px);
+  transform: translate(-2px, -10px) rotate(405deg)  scale(1.05, 1);
 }
 
 /* Hide navbar links on small screens */
@@ -312,8 +302,6 @@ button:disabled {
     display: none;
     flex-direction: column;
     position: absolute;
-    top: 70px;
-    right: 0;
     background-color: #fff;
     width: 100%;
     padding: 10px 0;
@@ -321,6 +309,7 @@ button:disabled {
   }
 
   .navbar-links.active {
+    top:70px;
     display: flex;
   }
 
