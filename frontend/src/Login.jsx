@@ -7,9 +7,12 @@ import logo from './assets/logo.webp';
 function Login({ onLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
   const [isRegistering, setIsRegistering] = useState(false);
+  const [firstName, setFirstName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -19,45 +22,83 @@ function Login({ onLogin }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
-
-    // Validate email format before making the request
+  
     if (!validateEmail(email)) {
       setError('Please enter a valid email address.');
       return;
     }
-
+  
+    if (isRegistering && password !== confirmPassword) {
+      setError("Passwords don't match.");
+      return;
+    }
+  
     try {
       const endpoint = isRegistering ? '/register' : '/login';
-      //const endpoint = isRegistering ? '/api/register' : '/api/login';
       const response = await fetch(`https://qa-hrs.onrender.com${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify(
+          isRegistering 
+            ? { email, password, firstName, surname } 
+            : { email, password }
+        ),
       });
-
+  
       const data = await response.json();
-
+      console.log('API Response:', data);  // Log the API response for debugging
+  
       if (!response.ok) {
-        throw new Error(data.message || 'Error during registration');
+        throw new Error(data.message || 'Error during registration or login');
       }
-
-      onLogin(data.token);
+  
+      if (data.token && typeof onLogin === 'function') {
+        onLogin(data.token);
+      } else {
+        setError('No token received from the server.');
+      }
     } catch (err) {
       setError(err.message);
+      console.error('Error during submission:', err);  // Log any errors encountered
     }
   };
-
+  
   return (
     <div className="login-wrapper">
       <div className="login-container">
         <img src={logo} alt="Hotel Logo" className="logo-img" />
         <h1>{isRegistering ? 'Create Account' : 'Learner Login'}</h1>
         <h3>Welcome to the QA Hotel, Restaurant & Spa</h3>
-        <p>{isRegistering ? ' Thank you for your interest in our exclusive hotel, reserved for our esteemed learners and their dedicated trainers.' : 'Thank you for registering at our exclusive hotel which is only available to our valued learners and their trainers.'}</p>
-        <p>{isRegistering ? 'Once your registration is complete, you\’ll be able to explore our website to discover more about our premium amenities, including our state-of-the-art health & fitness center and our renowned partners at Mancuzo Spa. Don\’t forget to keep an eye out for exclusive offers to enhance your stay.' : 'Upon loging in, feel free to browse the website to find out more about our facilities, such as our health & fitness, plus our valued partners at Mancuzo Spa. In addition, look out for our special offers for your stay.'}</p>
+        <p>{isRegistering ? 'Thank you for your interest in our exclusive hotel...' : 'Thank you for registering...'}</p>
+        
         <form onSubmit={handleSubmit}>
+          {isRegistering && (
+            <>
+              <div className="form-group">
+                <input
+                  type="text"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  required
+                  placeholder="First Name"
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="text"
+                  value={surname}
+                  onChange={(e) => setSurname(e.target.value)}
+                  required
+                  placeholder="Surname"
+                  className="form-control"
+                />
+              </div>
+            </>
+          )}
+
           <div className="form-group">
             <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
             <input
@@ -69,6 +110,7 @@ function Login({ onLogin }) {
               className="form-control"
             />
           </div>
+
           <div className="form-group">
             <FontAwesomeIcon icon={faKey} className="input-icon" />
             <input
@@ -85,10 +127,26 @@ function Login({ onLogin }) {
               onClick={() => setShowPassword(!showPassword)}
             />
           </div>
+
+          {isRegistering && (
+            <div className="form-group">
+              <FontAwesomeIcon icon={faKey} className="input-icon" />
+              <input
+                type={showPassword ? "text" : "password"}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+                placeholder="Confirm Password"
+                className="form-control"
+              />
+            </div>
+          )}
+
           {error && <div className="error-message">{error}</div>}
           <button type="submit" className="btn-submit">
             {isRegistering ? 'Register' : 'Login'}
           </button>
+
           <p className="toggle-text">
             {isRegistering ? 'Already have an account?' : "Don't have an account?"}{' '}
             <span className="toggle-link" onClick={() => setIsRegistering(!isRegistering)}>
