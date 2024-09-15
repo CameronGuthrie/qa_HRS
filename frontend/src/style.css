@@ -1,5 +1,7 @@
 /* Global Styles */
 html, body {
+  color: black;
+  background-color: white;
   font-family: "Calibri", sans-serif;
   /*min-width: 530px; /* Prevents shrinking below 530px */
   overflow-x: hidden; /* Prevents horizontal scrollbars */
@@ -28,6 +30,10 @@ h2 {
   text-align: center;
 }
 
+.left-text {
+  text-align: left !important;
+}
+
 .title {
   color: rgb(255, 255, 255);
   display: inline;
@@ -37,6 +43,23 @@ h2 {
   height: auto;
   line-height: 1.4em;
   text-align: center;
+}
+
+.four-o-four {
+  font-size: 5rem;
+  font-weight: bolder;
+}
+
+.green-text {
+  color: rgb(46, 107, 46);
+}
+
+.red-text {
+  color: rgb(239, 83, 80);
+}
+
+.blue-text {
+  color: rgb(31, 31, 129)
 }
 
 /* Logo Styles */
@@ -213,10 +236,10 @@ button:disabled {
 
 /* Navbar */
 .navbar {
-  display: flex;
+  display: inline-block;
   align-items: center;
   justify-content: space-between;
-  height: 70px;
+  min-height: 70px;
   width: 100%;
   background-color: #fff;
   /*padding: 0 20px;*/
@@ -225,16 +248,19 @@ button:disabled {
 }
 
 .navbar-logo {
+  position: absolute;
+  top: 12px;
   height: 50px;
   width: 250px;
 }
 
 /* Navbar Links  */
 .navbar-links {
+  justify-content: flex-end;
   display: flex;
   list-style: none;
-  margin: 0;
-  padding: 0;
+  margin-top: 2px;
+  margin-bottom: -2px;
 }
 
 .navbar-links li {
@@ -242,8 +268,12 @@ button:disabled {
   margin-right: 20px;
 }
 
-.navbar-links a, logout-button {
-  background-color: none;
+.logout-button {
+  all: unset;
+}
+
+.navbar-links a, .logout-button {
+  background-color: rgba(0,0,0,0);
   display: inline-block;
   color: rgb(202, 162, 51);
   text-decoration: none;
@@ -260,12 +290,14 @@ button:disabled {
 }
 
 .logout-button {
-  color: green;
+  color: green !important;
 }
 
 .logout-button:hover {
-  border-bottom: 5px solid green;
-}
+  border-bottom: 5px solid green !important;
+  background-color: rgba(0,0,0,0) !important;
+  cursor: pointer;
+} 
 /* OLD MENU ICON
 /* Menu Icon */
 .menu-icon {
@@ -299,9 +331,10 @@ button:disabled {
 /* Hide navbar links on small screens */
 @media (max-width: 768px) {
   .navbar-links {
+    transition: 0.3s;
     display: none;
     flex-direction: column;
-    position: absolute;
+    /* position: absolute; */
     background-color: #fff;
     width: 100%;
     padding: 10px 0;
@@ -309,8 +342,10 @@ button:disabled {
   }
 
   .navbar-links.active {
-    top:70px;
-    display: flex;
+    position: relative;
+    top: 70px;
+    display: inline-flex;
+    transition: 0.3s;
   }
 
   .navbar-links li {
@@ -319,7 +354,10 @@ button:disabled {
   }
 
   .menu-icon {
-    display: flex;
+    display: inline-flex;
+    position:absolute;
+    right:0px;
+    top: 24px;
   }
 }
 
@@ -362,4 +400,51 @@ button:disabled {
   .image-item {
     width: 100%; /* Makes each item take full width */
   }
+}
+
+/* Carousel container */
+.carousel {
+  position: relative;
+  max-width: 600px; /* Adjust as needed */
+  margin: auto;
+}
+
+/* Hide the images by default */
+.carousel-image-item img {
+  width: 100%;
+  display: block;
+}
+
+/* Next & previous buttons */
+.carousel-button {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  user-select: none;
+  transition: 0.3s;
+}
+
+/* Position the "next button" to the right */
+.carousel-button.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* Position the "prev button" to the left */
+.carousel-button.prev {
+  left: 0;
+  border-radius: 0 3px 3px 0;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.carousel-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }
