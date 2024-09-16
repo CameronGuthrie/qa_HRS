@@ -14,21 +14,20 @@ import Login from './Login';
 import logo from './assets/logo.webp';
 import logoFooter from './assets/footer-logo.webp';
 
-// Import your new page components
+// Import your page components
 import HomePage from './pages/HomePage';
 import RoomPage from './pages/RoomPage';
 import RestaurantPage from './pages/RestaurantPage';
 import HealthFitnessPage from './pages/HealthFitnessPage';
 import StudyRoomPage from './pages/StudyRoomPage';
-import AboutPage from './pages/AboutPage';
 import NotFound from './pages/NotFound';
 
-// Import the Trainer Reservation Page
+// Import the Reservation Pages
 import TrainerReservationPage from './pages/TrainerReservationPage';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isTrainer, setIsTrainer] = useState(false); // New state variable
+  const [isTrainer, setIsTrainer] = useState(false);
   const [token, setToken] = useState(null);
 
   useEffect(() => {
@@ -82,15 +81,18 @@ function App() {
             <Route path="/restaurant" element={<RestaurantPage />} />
             <Route path="/health-fitness" element={<HealthFitnessPage />} />
             <Route path="/study" element={<StudyRoomPage />} />
-            <Route path="/about" element={<AboutPage />} />
+            <Route path="/about" element={<NotFound />} />
 
-            {/* Trainer-Specific Route */}
+            {/* Reservation Routes */}
             {isTrainer && (
               <Route
                 path="/trainer/reservations"
                 element={<TrainerReservationPage />}
               />
             )}
+            {/* Learners and trainers can access these routes */}
+            <Route path="/reserve-table" element={<NotFound />} />
+            <Route path="/book-spa" element={<NotFound />} />
 
             {/* Redirect non-trainers trying to access trainer routes */}
             {!isTrainer && (
@@ -122,9 +124,15 @@ function Layout({ handleLogout, isTrainer }) {
   );
 }
 
-// Navbar component with hamburger menu
+// Navbar component with hamburger menu and dropdown
 function Navbar({ handleLogout, isTrainer }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const closeMenus = () => {
+    setIsMenuOpen(false);
+    setIsDropdownOpen(false);
+  };
 
   return (
     <nav className="navbar">
@@ -143,30 +151,52 @@ function Navbar({ handleLogout, isTrainer }) {
       {/* Navbar links */}
       <ul className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/" onClick={closeMenus}>Home</Link>
         </li>
         <li>
-          <Link to="/rooms">Your Room</Link>
+          <Link to="/rooms" onClick={closeMenus}>Your Room</Link>
         </li>
         <li>
-          <Link to="/restaurant">Restaurant & Bar</Link>
+          <Link to="/restaurant" onClick={closeMenus}>Restaurant & Bar</Link>
         </li>
         <li>
-          <Link to="/health-fitness">Health & Fitness</Link>
+          <Link to="/health-fitness" onClick={closeMenus}>Health & Fitness</Link>
         </li>
         <li>
-          <Link to="/study">Study Room</Link>
+          <Link to="/study" onClick={closeMenus}>Study Room</Link>
         </li>
         <li>
-          <Link to="/about">About</Link>
+          <Link to="/404" onClick={closeMenus}>About</Link>
         </li>
 
-        {/* Trainer-Specific Link */}
-        {isTrainer && (
-          <li>
-            <Link to="/trainer/reservations">Reservations</Link>
-          </li>
-        )}
+        {/* Reservations Dropdown */}
+        <li
+          className="dropdown"
+          onMouseEnter={() => setIsDropdownOpen(true)}
+          onMouseLeave={() => setIsDropdownOpen(false)}
+        >
+          <button
+            className="dropbtn"
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+          >
+            Reservations
+          </button>
+          <div className={`dropdown-content ${isDropdownOpen ? 'show' : ''}`}>
+            {/* Show 'Reserve a Room' only for trainers */}
+            {isTrainer && (
+              <Link to="/trainer/reservations" onClick={closeMenus}>
+                Reserve a Room
+              </Link>
+            )}
+            {/* These links are visible to both learners and trainers */}
+            <Link to="/404" onClick={closeMenus}>
+              Reserve a Table
+            </Link>
+            <Link to="/404" onClick={closeMenus}>
+              Book an Appointment at the Spa
+            </Link>
+          </div>
+        </li>
 
         <li>
           <button onClick={handleLogout} className="logout-button">
