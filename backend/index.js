@@ -91,6 +91,12 @@ db.serialize(() => {
       email: 'namir.sabbagh@qa.com',
       password: '!Password1',
     },
+    {
+      firstName: 'QA',
+      surname: 'Trainer',
+      email: 'qa.trainer@qa.com',
+      password: '!Password1',
+    },
   ];
 
   const insertTrainer = db.prepare(
