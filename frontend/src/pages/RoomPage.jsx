@@ -42,7 +42,7 @@ function RoomPage() {
         <img src={bannerImage} alt="Banner" className="banner-image" />
       </div>
       <div className="content content-dark">
-        <h1 className="title">Your Room</h1>
+        <h1 className="title yellow-text">Your Room</h1>
         <p>Relax, we've got this....</p>
       </div>
       <div className="content">

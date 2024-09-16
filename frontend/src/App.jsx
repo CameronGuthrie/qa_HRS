@@ -1,3 +1,4 @@
+// App.jsx
 import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
@@ -6,7 +7,9 @@ import {
   Link,
   useLocation,
   Outlet,
+  Navigate,
 } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 import Login from './Login';
 import logo from './assets/logo.webp';
 import logoFooter from './assets/footer-logo.webp';
@@ -20,8 +23,12 @@ import StudyRoomPage from './pages/StudyRoomPage';
 import AboutPage from './pages/AboutPage';
 import NotFound from './pages/NotFound';
 
+// Import the Trainer Reservation Page
+import TrainerReservationPage from './pages/TrainerReservationPage';
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isTrainer, setIsTrainer] = useState(false); // New state variable
   const [token, setToken] = useState(null);
 
   useEffect(() => {
@@ -29,6 +36,14 @@ function App() {
     if (savedToken) {
       setToken(savedToken);
       setIsLoggedIn(true);
+
+      // Decode the token to check if the user is a trainer
+      const decodedToken = jwtDecode(savedToken);
+      if (decodedToken.trainer_ID) {
+        setIsTrainer(true);
+      } else {
+        setIsTrainer(false);
+      }
     }
   }, []);
 
@@ -36,12 +51,21 @@ function App() {
     setToken(userToken);
     localStorage.setItem('token', userToken);
     setIsLoggedIn(true);
+
+    // Decode the token to check if the user is a trainer
+    const decodedToken = jwtDecode(userToken);
+    if (decodedToken.trainer_ID) {
+      setIsTrainer(true);
+    } else {
+      setIsTrainer(false);
+    }
   };
 
   const handleLogout = () => {
     setToken(null);
     localStorage.removeItem('token');
     setIsLoggedIn(false);
+    setIsTrainer(false);
   };
 
   return (
@@ -49,15 +73,34 @@ function App() {
       {isLoggedIn ? (
         <Routes>
           {/* Layout Route that includes Navbar and Footer */}
-          <Route element={<Layout handleLogout={handleLogout} />}>
+          <Route
+            element={<Layout handleLogout={handleLogout} isTrainer={isTrainer} />}
+          >
+            {/* Common Routes */}
             <Route path="/" element={<HomePage />} />
             <Route path="/rooms" element={<RoomPage />} />
             <Route path="/restaurant" element={<RestaurantPage />} />
             <Route path="/health-fitness" element={<HealthFitnessPage />} />
             <Route path="/study" element={<StudyRoomPage />} />
             <Route path="/about" element={<AboutPage />} />
-            {/* Add more routes here if needed */}
+
+            {/* Trainer-Specific Route */}
+            {isTrainer && (
+              <Route
+                path="/trainer/reservations"
+                element={<TrainerReservationPage />}
+              />
+            )}
+
+            {/* Redirect non-trainers trying to access trainer routes */}
+            {!isTrainer && (
+              <Route
+                path="/trainer/*"
+                element={<Navigate to="/" replace />}
+              />
+            )}
           </Route>
+
           {/* Route for 404 page without Navbar and Footer */}
           <Route path="*" element={<NotFound />} />
         </Routes>
@@ -69,10 +112,10 @@ function App() {
 }
 
 // Layout component to include Navbar and Footer
-function Layout({ handleLogout }) {
+function Layout({ handleLogout, isTrainer }) {
   return (
     <>
-      <Navbar handleLogout={handleLogout} />
+      <Navbar handleLogout={handleLogout} isTrainer={isTrainer} />
       <Outlet />
       <Footer />
     </>
@@ -80,7 +123,7 @@ function Layout({ handleLogout }) {
 }
 
 // Navbar component with hamburger menu
-function Navbar({ handleLogout }) {
+function Navbar({ handleLogout, isTrainer }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -115,8 +158,16 @@ function Navbar({ handleLogout }) {
           <Link to="/study">Study Room</Link>
         </li>
         <li>
-          <Link to="/404">About</Link>
+          <Link to="/about">About</Link>
         </li>
+
+        {/* Trainer-Specific Link */}
+        {isTrainer && (
+          <li>
+            <Link to="/trainer/reservations">Reservations</Link>
+          </li>
+        )}
+
         <li>
           <button onClick={handleLogout} className="logout-button">
             Logout
@@ -133,7 +184,7 @@ function Footer() {
       <div className="footer-divider"></div>
       <div className="content content-dark">
         <img src={logoFooter} alt="Hotel Logo" className="footer-logo" />
-        <div className="image-flexbox">
+        <div className="image-flexbox" style={{ padding: '0 10vw' }}>
           <div className="image-item">
             <b>Privacy</b>
           </div>

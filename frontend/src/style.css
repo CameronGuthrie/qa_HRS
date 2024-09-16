@@ -58,6 +58,10 @@ h2 {
   color: rgb(239, 83, 80);
 }
 
+.yellow-text {
+  color: rgb(243, 243, 96);
+}
+
 .blue-text {
   color: rgb(31, 31, 129)
 }
@@ -447,4 +451,15 @@ button:disabled {
 /* On hover, add a black background color with a little bit see-through */
 .carousel-button:hover {
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Trainer mode submit button */
+.btn-submit.btn-blue {
+  background-color: rgb(25, 25, 150); /* Replace with your desired blue color */
+  border-color: rgb(25, 25, 150);
+}
+
+/* Trainer mode styling */
+.login-wrapper.trainer-mode {
+  /* Adjust background, text colors, etc., as needed */
 }
