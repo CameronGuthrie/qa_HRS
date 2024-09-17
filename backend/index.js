@@ -1,5 +1,4 @@
 // index.js
-// index.js
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const bcrypt = require('bcrypt');
@@ -36,7 +35,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 
 // Serve static files from the frontend/dist directory
-app.use(express.static(path.join(__dirname, '../frontend/dist')));
+const staticPath = path.resolve(__dirname, 'frontend', 'dist');
+console.log('Serving static files from:', staticPath);
+app.use(express.static(staticPath));
 
 // Initialize the SQLite database and create tables
 db.serialize(() => {
@@ -365,15 +366,9 @@ app.post('/api/reservations', authenticateTrainer, (req, res) => {
   });
 });
 
-// Catch-all route to serve the front-end
+// Catch-all route to serve the frontend's index.html
 app.get('*', (req, res) => {
-  // Check if the request is for a file in the frontend/dist directory
-  const requestedFile = path.join(__dirname, '../frontend/dist', req.path);
-  if (fs.existsSync(requestedFile) && req.path !== '/') {
-    res.sendFile(requestedFile);
-  } else {
-    res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
-  }
+  res.sendFile(path.join(staticPath, 'index.html'));
 });
 
 const PORT = process.env.PORT || 3000;
