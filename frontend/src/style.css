@@ -464,7 +464,7 @@ button:disabled {
   /* Adjust background, text colors, etc., as needed */
 }
 
-* Dropdown container */
+/* Dropdown container */
 .navbar-links .dropdown {
   position: relative;
 }
