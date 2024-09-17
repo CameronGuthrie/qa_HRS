@@ -35,7 +35,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 
 // Serve static files from the frontend/dist directory
-const staticPath = path.resolve(__dirname, 'frontend', 'dist');
+const staticPath = path.resolve(__dirname, '../frontend/dist');
 console.log('Serving static files from:', staticPath);
 app.use(express.static(staticPath));
 
