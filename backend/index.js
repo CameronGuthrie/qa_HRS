@@ -16,7 +16,7 @@ if (!JWT_SECRET) {
   process.exit(1); // Stop server if JWT_SECRET is not set
 }
 
-const allowedOrigins = ['https://qa-hrs.onrender.com', 'http://localhost:3000'];
+const allowedOrigins = ['https://room1-qa-hrs.onrender.com','https://room2-qa-hrs.onrender.com','https://room3-qa-hrs.onrender.com','https://qa-hrs.onrender.com', 'http://localhost:3000'];
 
 const corsOptions = {
   origin: (origin, callback) => {
