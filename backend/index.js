@@ -16,18 +16,19 @@ if (!JWT_SECRET) {
   process.exit(1); // Stop server if JWT_SECRET is not set
 }
 
-const allowedOrigins = ['https://room1-qa-hrs.onrender.com','https://room2-qa-hrs.onrender.com','https://room3-qa-hrs.onrender.com','https://qa-hrs.onrender.com', 'http://localhost:3000'];
-
+// Allow requests from localhost and *.render.com
 const corsOptions = {
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
+    const allowedOrigins = [/^https?:\/\/.+\.render\.com(:\d{1,5})?$/, /http:\/\/localhost(:\d{1,5})?$/];
+    
+    // Check if the request's origin matches localhost or render.com
+    if (!origin || allowedOrigins.some((regex) => regex.test(origin))) {
+      callback(null, true); // Allow the request
     } else {
-      callback(new Error('Not allowed by CORS'));
+      callback(new Error('Not allowed by CORS')); // Block other origins
     }
   },
-  credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true, // Allow credentials (e.g., cookies, headers) to be included
 };
 
 app.use(express.json());
