@@ -19,7 +19,10 @@ if (!JWT_SECRET) {
 // Allow requests from localhost and *.render.com
 const corsOptions = {
   origin: (origin, callback) => {
-    const allowedOrigins = [/^https?:\/\/.+\.render\.com(:\d{1,5})?$/, /http:\/\/localhost(:\d{1,5})?$/];
+    const allowedOrigins = [
+      /^https?:\/\/.+\.onrender\.com(:\d{1,5})?$/, 
+      /http:\/\/localhost(:\d{1,5})?$/
+    ];
 
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) {
