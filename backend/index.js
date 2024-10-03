@@ -20,9 +20,16 @@ if (!JWT_SECRET) {
 const corsOptions = {
   origin: (origin, callback) => {
     const allowedOrigins = [/^https?:\/\/.+\.render\.com(:\d{1,5})?$/, /http:\/\/localhost(:\d{1,5})?$/];
-    
-    // Check if the request's origin matches localhost or render.com
-    if (!origin || allowedOrigins.some((regex) => regex.test(origin))) {
+
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) {
+      return callback(null, true);
+    }
+
+    // Check if the origin matches any of the allowed patterns
+    const isAllowed = allowedOrigins.some((regex) => regex.test(origin));
+
+    if (isAllowed) {
       callback(null, true); // Allow the request
     } else {
       callback(new Error('Not allowed by CORS')); // Block other origins
@@ -31,9 +38,9 @@ const corsOptions = {
   credentials: true, // Allow credentials (e.g., cookies, headers) to be included
 };
 
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors(corsOptions));
 
 // Serve static files from the frontend/dist directory
 const staticPath = path.resolve(__dirname, '../frontend/dist');
